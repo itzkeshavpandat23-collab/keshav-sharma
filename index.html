@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Book Exchange - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 12px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .action-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #eef2f3;
+            border-radius: 6px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .book-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            background: #fff;
+            transition: 0.3s;
+        }
+        .highlight {
+            background-color: #fff3cd !important;
+            border-color: #ffeeba !important;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="mainHeading">Campus Book Exchange</h1>
+        <p>Welcome to the official student book sharing platform!</p>
+    </header>
+
+    <!-- Common Navigation Bar linking all three webpages -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="books.html">Browse Books</a>
+        <a href="list-book.html">List a Book</a>
+    </nav>
+
+    <div class="container">
+        <section>
+            <h2>About Our Service</h2>
+            <p>The Campus Book Exchange service helps students save money by trading, sharing, or buying used textbooks and novels directly from peers. Reduce waste and build a connected campus community!</p>
+        </section>
+
+        <!-- Interactive Control Buttons -->
+        <div class="action-section">
+            <button onclick="changeHeading()">Change Main Heading</button>
+            <button onclick="changeCardColor()">Change Card Colour</button>
+            <button onclick="toggleFeaturedBooks()">Show / Hide Featured Books</button>
+        </div>
+
+        <!-- Featured Books Section -->
+        <div id="featuredSection">
+            <h2>Featured Books</h2>
+            <div class="book-grid">
+                
+                <!-- Card 1 -->
+                <div class="book-card" id="card1">
+                    <h3>Data Structures & Algorithms</h3>
+                    <p><strong>Author:</strong> Mark Allen</p>
+                    <p><strong>Category:</strong> Computer Science</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="book-card" id="card2">
+                    <h3>Engineering Mathematics</h3>
+                    <p><strong>Author:</strong> B.S. Grewal</p>
+                    <p><strong>Category:</strong> Mathematics</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="book-card" id="card3">
+                    <h3>Organic Chemistry</h3>
+                    <p><strong>Author:</strong> Morrison Boyd</p>
+                    <p><strong>Category:</strong> Chemistry</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Change main heading text
+        function changeHeading() {
+            let heading = document.getElementById("mainHeading");
+            heading.textContent = "Welcome to Campus Book Exchange (Updated!)";
+        }
+
+        // 2. Change background colour of a featured book card using .style
+        function changeCardColor() {
+            let card = document.getElementById("card1");
+            card.style.backgroundColor = "#e8f8f5";
+            card.style.borderColor = "#a3e4d7";
+        }
+
+        // 3. Show or hide featured books section using classList.toggle
+        function toggleFeaturedBooks() {
+            let section = document.getElementById("featuredSection");
+            section.classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+</html>

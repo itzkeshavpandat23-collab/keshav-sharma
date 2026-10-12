@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books - Campus Book Exchange</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 12px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .search-section, .modify-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #eef2f3;
+            border-radius: 6px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 60%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .book-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .confirmation {
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Browse Books</h1>
+        <p>Find textbooks and novels shared by fellow students</p>
+    </header>
+
+    <!-- Common Navigation Bar linking all three webpages -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="books.html">Browse Books</a>
+        <a href="list-book.html">List a Book</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Search Input Section -->
+        <div class="search-section">
+            <h3>Search / Show Specific Book</h3>
+            <input type="text" id="bookInput" placeholder="Enter book title...">
+            <button onclick="showBookTitle()">Show Book</button>
+            <p id="displayArea" style="margin-top: 10px; font-weight: bold;"></p>
+            <p id="searchConfirmation" class="confirmation"></p>
+        </div>
+
+        <!-- Modify Card Section -->
+        <div class="modify-section">
+            <h3>Highlight / Modify Book</h3>
+            <p>Click the button below to change the appearance of the first book card.</p>
+            <button onclick="modifyBookCard()">Change Card Appearance</button>
+        </div>
+
+        <!-- Book Cards Section -->
+        <h2>Available Books</h2>
+        <div class="book-grid">
+            
+            <!-- Book Card 1 -->
+            <div class="book-card" id="card1">
+                <h4 id="card1Title">Data Structures & Algorithms</h4>
+                <p><strong>Author:</strong> Mark Allen</p>
+                <p><strong>Subject:</strong> Computer Science</p>
+                <p><strong>Condition:</strong> Like New</p>
+                <br>
+                <button id="btn1" onclick="requestBook('btn1', 'msg1')">Mark as Requested</button>
+                <p id="msg1" class="confirmation"></p>
+            </div>
+
+            <!-- Book Card 2 -->
+            <div class="book-card" id="card2">
+                <h4>Engineering Mathematics</h4>
+                <p><strong>Author:</strong> B.S. Grewal</p>
+                <p><strong>Subject:</strong> Mathematics</p>
+                <p><strong>Condition:</strong> Good</p>
+                <br>
+                <button id="btn2" onclick="requestBook('btn2', 'msg2')">Mark as Requested</button>
+                <p id="msg2" class="confirmation"></p>
+            </div>
+
+            <!-- Book Card 3 -->
+            <div class="book-card" id="card3">
+                <h4>Organic Chemistry</h4>
+                <p><strong>Author:</strong> Morrison Boyd</p>
+                <p><strong>Subject:</strong> Chemistry</p>
+                <p><strong>Condition:</strong> Fair</p>
+                <br>
+                <button id="btn3" onclick="requestBook('btn3', 'msg3')">Mark as Requested</button>
+                <p id="msg3" class="confirmation"></p>
+            </div>
+
+            <!-- Book Card 4 -->
+            <div class="book-card" id="card4">
+                <h4>Introduction to Psychology</h4>
+                <p><strong>Author:</strong> James W. Kalat</p>
+                <p><strong>Subject:</strong> Psychology</p>
+                <p><strong>Condition:</strong> Brand New</p>
+                <br>
+                <button id="btn4" onclick="requestBook('btn4', 'msg4')">Mark as Requested</button>
+                <p id="msg4" class="confirmation"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function requestBook(buttonId, messageId) {
+            let button = document.getElementById(buttonId);
+            button.textContent = "Request Sent";
+            button.style.backgroundColor = "#27ae60"; 
+            button.disabled = true;
+
+            let message = document.getElementById(messageId);
+            message.textContent = "Success! Request has been sent to the owner.";
+        }
+
+        function showBookTitle() {
+            let inputValue = document.getElementById("bookInput").value;
+            let displayArea = document.getElementById("displayArea");
+            let confirmation = document.getElementById("searchConfirmation");
+
+            if (inputValue.trim() === "") {
+                displayArea.textContent = "Please enter a valid book title.";
+                confirmation.textContent = "";
+            } else {
+                displayArea.textContent = "Selected Book: " + inputValue;
+                confirmation.textContent = "Book title submitted successfully!";
+            }
+        }
+
+        function modifyBookCard() {
+            let card1 = document.getElementById("card1");
+            let title1 = document.getElementById("card1Title");
+
+            card1.style.backgroundColor = "#fff3cd";
+            card1.style.borderColor = "#ffeeba";
+            title1.style.color = "#856404";
+            title1.textContent = "Data Structures & Algorithms (Featured Choice)";
+        }
+    </script>
+
+</body>
+</html>
